@@ -11,9 +11,12 @@ Status:
 | :--------------------------- | :----------------------------: | :------------: |
 | BROWSENODE -> GetBrowseNodes | :warning: In Progress...       |                |
 | ITEM -> GetVariations        | :warning: In Progress...       |                |
-| ITEM -> GetItems             | :white_check_mark: Implemented |      v0.1      |
+| ITEM -> GetItems             | :white_check_mark: Implemented |     v0.1.0     |
 | ITEM -> SearchItems          | :warning: In Progress...       |                |
 
+## Requirements
+ - NodeJS > 18
+ - ESM and CJS available it should work in boths systems
 
 ## Installation
 
@@ -23,7 +26,7 @@ npm i @mystogab/paapi5-aws4
 ```
 pnpm:
 ```shell
-npm add @mystogab/paapi5-aws4
+pnpm add @mystogab/paapi5-aws4
 ```
 bun:
 ```shell
@@ -33,7 +36,7 @@ bun add @mystogab/paapi5-aws4
 ## Getting Started
 Simple example of GetItem images:
 ```typescript
-import { getItem } from '@mystogab/paapi5-aws4';
+import { getItems } from '@mystogab/paapi5-aws4';
 
 const credentials = {
     accessKey: 'AKIAYOURACCESSKEU',
@@ -56,3 +59,8 @@ const images = await getItems(credentials, 'B09MLRPTT2', resources);
 
 ```
 
+## Changelog
+### v0.1.1
+ - fix: doc typos
+ - add CJS and ESM compatibility
+ - updated docs
