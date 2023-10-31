@@ -33,7 +33,7 @@
   "contributors": [],
   "scripts": {
     "build": "tsc & npm run build:cjs",
-    "build:cjs": "esbuild src/index.ts --bundle --outfile=lib/index.cjs --platform=node --target=node18 --format=cjs",
+    "build:cjs": "esbuild src/index.ts --bundle --outfile=lib/index.cjs --platform=node --target=node18 --format=cjs --external:crypto-js",
     "dev": "",
     "test": ""
   },
