@@ -60,6 +60,10 @@ const images = await getItems(credentials, 'B09MLRPTT2', resources);
 ```
 
 ## Changelog
+### v0.1.2
+ - feature: removed old crypto-js dependency
+ - types: added resources typing for 'getItems'
+
 ### v0.1.1
  - fix: doc typos
  - add CJS and ESM compatibility

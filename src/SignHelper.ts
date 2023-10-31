@@ -28,8 +28,7 @@
 // sources of inspiration:
 // http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html
 
-// var crypto = require('crypto-js');
-import crypto from 'crypto-js';
+import crypto from 'node:crypto';
 
 type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'UPDATE' | 'PATCH';
 export type PaapiRequestBody = {
@@ -150,7 +149,7 @@ const createSignature = function(secret, time, region, service, stringToSign) {
   var h2 = hmac(h1, region); // region-key
   var h3 = hmac(h2, service); // service-key
   var h4 = hmac(h3, 'aws4_request'); // signing-key
-  return hmac(h4, stringToSign).toString(crypto.enc.Hex);
+  return hmac(h4, stringToSign).toString('hex');
 };
 
 export const toAmzDate = function(time) {
@@ -166,9 +165,9 @@ function toDate(time) {
 }
 
 function hmac(key, data) {
-  return crypto.HmacSHA256(data, key);
+  return crypto.createHmac('sha256', key).update(data, 'utf8').digest();
 }
 
 function hexEncodedHash(data) {
-  return crypto.SHA256(data).toString(crypto.enc.Hex);
+  return crypto.createHash('sha256').update(data, 'utf8').digest('hex');
 }

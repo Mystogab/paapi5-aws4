@@ -1,4 +1,5 @@
 import { PaapiRequestBody, createAuthorizationHeader, toAmzDate } from './SignHelper.js';
+import { ItemResource } from './types.js';
 
 type Credentials = {
   accessKey: string,
@@ -30,7 +31,7 @@ const buildDefaultHeaders = (date: number = Date.now()) => ({
 export const getItems = async (
   credentials: Credentials,
   itemsId: string | Array<string>,
-  resources: Array<string>
+  resources: Array<ItemResource>
   ) => {
     //TODO: Validate input
     const date = Date.now();
