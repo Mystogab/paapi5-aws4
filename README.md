@@ -17,7 +17,7 @@ Status:
 
 ## Requirements
  - NodeJS > 18
- - ESM and CJS available it should work in boths systems
+ - ESM and CJS available so it can work in boths systems
 
 ## Installation
 
