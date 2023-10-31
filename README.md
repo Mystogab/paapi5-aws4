@@ -35,14 +35,20 @@ bun add @mystogab/paapi5-aws4
 
 ## Getting Started
 Simple example of GetItem images:
-```typescript
-import { getItems } from '@mystogab/paapi5-aws4';
+```ts
+import { getItems, Config } from '@mystogab/paapi5-aws4';
 
-const credentials = {
-    accessKey: 'AKIAYOURACCESSKEU',
-    secretKey: 'UAYOURseocbnvousebcobes/secret',
-    partnerTag: 'awesome-tag'
-};
+const config: Config = {
+    credentials = {
+        accessKey: 'AKIAYOURACCESSKEU',
+        secretKey: 'UAYOURseocbnvousebcobes/secret',
+        partnerTag: 'awesome-tag'
+    },
+    marketplace: 'www.amazon.com', //optional, default = "www.amazon.com"
+    partnerType: 'Associates' //optional, default = "Associates" it cant be different to it
+}
+
+const ;
 
 const resources = [
     'Images.Primary.Small',
@@ -55,11 +61,15 @@ const resources = [
     'Images.Variants.HighRes'
 ];
 
-const images = await getItems(credentials, 'B09MLRPTT2', resources);
+const images = await getItems(config, 'B09MLRPTT2', resources);
 
 ```
 
 ## Changelog
+### v0.1.3
+ - breaking change: functions take Config instead of Credentials as first argument
+ - ability to define the marketplace, default to www.amazon.com
+
 ### v0.1.2
  - feature: removed old crypto-js dependency
  - types: added resources typing for 'getItems'

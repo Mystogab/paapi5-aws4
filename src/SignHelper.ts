@@ -45,7 +45,7 @@ export const createAuthorizationHeader = function(
   requestHeaders: Record<string, string>,
   httpMethod: HTTPMethod,
   path: string,
-  payload: PaapiRequestBody,
+  payload: any,
   region: string,
   service: string,
   timestamp: number

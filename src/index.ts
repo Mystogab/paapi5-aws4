@@ -1,4 +1,4 @@
-import { PaapiRequestBody, createAuthorizationHeader, toAmzDate } from './SignHelper.js';
+import { createAuthorizationHeader, toAmzDate } from './SignHelper.js';
 import { ItemResource } from './types.js';
 
 type Credentials = {
@@ -7,18 +7,41 @@ type Credentials = {
   partnerTag: string
 };
 
+const availableMarketplace = [
+  'www.amazon.com',    'www.amazon.ca',
+  'www.amazon.com.mx', 'www.amazon.com.br',
+  'www.amazon.co.uk',  'www.amazon.fr',
+  'www.amazon.de',     'www.amazon.es',
+  'www.amazon.in',     'www.amazon.it',
+  'www.amazon.ae',     'www.amazon.sa',
+  'www.amazon.com.tr', 'www.amazon.nl',
+  'www.amazon.se',     'www.amazon.pl',
+  'www.amazon.eg',     'www.amazon.com.be',
+  'www.amazon.co.jp',  'www.amazon.com.au',
+  'www.amazon.sg'
+] as const;
+
+type Marketplace = typeof availableMarketplace[number];
+
+type Config = {
+  credentials: Credentials,
+  marketplace?: Marketplace,
+  partnerType?: 'Associates'
+};
+
 const buildBody = (
   itemsId: string | Array<string>,
   resources: Array<string>,
-  partnerTag: string
-  ): PaapiRequestBody => ({
+  partnerTag: string,
+  marketplace: Marketplace = 'www.amazon.com'
+  ) => ({
     'ItemIds': [
       itemsId
     ].flat(),
     'Resources': resources,
     'PartnerTag': partnerTag,
     'PartnerType': 'Associates',
-    'Marketplace': 'www.amazon.com'
+    'Marketplace': marketplace
   });
 
 const buildDefaultHeaders = (date: number = Date.now()) => ({
@@ -29,18 +52,18 @@ const buildDefaultHeaders = (date: number = Date.now()) => ({
 });
 
 export const getItems = async (
-  credentials: Credentials,
+  config: Config,
   itemsId: string | Array<string>,
   resources: Array<ItemResource>
   ) => {
     //TODO: Validate input
     const date = Date.now();
-    const body = buildBody(itemsId, resources, credentials.partnerTag);
+    const body = buildBody(itemsId, resources, config.credentials.partnerTag, config.marketplace);
     const defaultHeaders = buildDefaultHeaders(date);
 
     const authorizationHeader = createAuthorizationHeader(
-      credentials.accessKey,
-      credentials.secretKey,
+      config.credentials.accessKey,
+      config.credentials.secretKey,
       defaultHeaders,
       'POST',
       "/paapi5/getitems",
