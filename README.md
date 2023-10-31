@@ -7,12 +7,13 @@ Up-to-date PAAPIv5 implementation
 
 Status:
 
-| Feature                      |             Status             | Implemented in |
-| :--------------------------- | :----------------------------: | :------------: |
-| BROWSENODE -> GetBrowseNodes | :warning: In Progress...       |                |
-| ITEM -> GetVariations        | :warning: In Progress...       |                |
-| ITEM -> GetItems             | :white_check_mark: Implemented |     v0.1.0     |
-| ITEM -> SearchItems          | :warning: In Progress...       |                |
+| Feature                             |             Status             | Implemented in | Expected in |
+| :---------------------------------- | :----------------------------: | :------------: | :---------: |
+| BROWSENODE -> GetBrowseNodes        | :warning: In Progress...       |                |   Q4 2023   |
+| ITEM -> GetVariations               | :warning: In Progress...       |                |   Q1 2024   |
+| ITEM -> GetItems                    | :white_check_mark: Implemented |     v0.1.0     |      -      |
+| ITEM -> SearchItems                 | :warning: In Progress...       |                |   Q1 2024   |
+| Core -> Remove crypto-js dependency | :white_check_mark: Implemented |     v0.1.2     |      -      |
 
 ## Requirements
  - NodeJS > 18
